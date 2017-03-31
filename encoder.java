@@ -2,62 +2,59 @@ import java.util.*;
 import java.io.*;
 public class encoder {
 	public void encoder(String path) throws Exception{
-		long start, end, costtime;
+		int bufferSize = 4096;
+		String str = null;
 		int readnum;
-		ArrayList<Character> buffer = new ArrayList<>(32);
+		int i = 0;
+		int k,  j, length;
+		String temp;
 		String[] table;
-		BuildTable buildTable = new BuildTable();
-		start = System.currentTimeMillis();
-		buildTable.buildTable(path);
-		end = System.currentTimeMillis();
-	    costtime = end - start;
-	    System.out.println("Build table:" + costtime + "s");
-		table = buildTable.table;
-		//System.out.println(table);
-		start = System.currentTimeMillis();
+		LinkedList<Character> buffer = new LinkedList<>();
+		byte[] outBuffer = new byte[bufferSize];
+
+		//Read file form code table
 		BufferedReader read = new BufferedReader(new FileReader(new File(path)));
+
+		//Create bin File
 		File encoded = new File("encoded.bin");
 		encoded.createNewFile();
 		FileOutputStream outputStream = new FileOutputStream(encoded);
-		//BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream("encoded.bin"));
-		String str = null;
-		byte[] outBuffer = new byte[4 * 1024];
-		int i = 0;
+		
+		//Build Table
+		BuildTable buildTable = new BuildTable();
+		buildTable.buildTable(path);
+		table = buildTable.table;
+
+		//Read code table file and output bin file
       	while((str = read.readLine()) != null){
         	readnum = Integer.parseInt(str);
-        	//System.out.println(readnum);
-        	for (int k = 0; k < table[readnum].length(); k++) {
+        	length = table[readnum].length();
+        	for (k = 0; k < length; k++) {
         		buffer.add(table[readnum].charAt(k));
         	}
-
         	while (buffer.size() >= 8) {
-        		String temp = "";
-        		for(int k = 0; k < 8; k++) {
-        			temp += buffer.get(0);
-        			buffer.remove(0);
+        		temp = "";
+        		for(k = 0; k < 8; k++) {
+        			temp += buffer.remove();
         		}
-        		outBuffer[i] = Integer.valueOf(temp+"", 2).byteValue();
+        		outBuffer[i] = Integer.valueOf(temp, 2).byteValue();
         		i++;
-        		if (i == 4 * 1024) {
+        		if (i == bufferSize) {
         			outputStream.write(outBuffer);
-        			outBuffer = new byte[4 * 1024];
+        			outBuffer = new byte[bufferSize];
         			i = 0;
         		}
         	}
-        	
         }
-        //For the remaining character in the buffer
-       	for (int j = 0; j < i; j++) {
+
+        //For the remaining character in the outBuffer
+       	for (j = 0; j < i; j++) {
 			outputStream.write(outBuffer[j]);
         }
         outputStream.close();
-        end = System.currentTimeMillis();
-	    costtime = end - start;
-	    System.out.println("OutPut bin:" + costtime + "s");
-		table = buildTable.table;
 	}
 
-	public static void main(String[] args) throws Exception{
+	public static void main(String[] args) throws Exception{	
 		encoder encode1 = new encoder();
 		encode1.encoder(args[0]);
 	}
