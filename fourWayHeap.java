@@ -14,7 +14,6 @@ public class fourWayHeap{
 		size++;
 		fourWayHeap[size - 1] = node;
 		bottomUp();
-		//System.out.println("test1");
 	}
 
 	public Node deleteM() {
@@ -22,8 +21,6 @@ public class fourWayHeap{
 		exchange(0, size - 1);
 		size = size - 1;
 		topDown();
-		//fourWayHeap.remove(size);
-		//System.out.println("test2");
 		return min;
 	}
 
