@@ -24,13 +24,16 @@ public class Test {
 
 	    
 	    //binary heap
-		start = System.currentTimeMillis();
-		for (int i = 0; i < 1; i++) {
+		
+		for (int i = 0; i < 10; i++) {
+	    	start = System.currentTimeMillis();
 	    	b.buildtreeb(freqtable);
+	    	end = System.currentTimeMillis();
+	    	costtime = end - start;
+	    	System.out.println("Time cost of binary Heap is " + costtime);
+
 	    }
-	    end = System.currentTimeMillis();
-	    costtime = end - start;
-	    System.out.println("Time cost of binary Heap is " + costtime);
+	    
 	    
 
     }
