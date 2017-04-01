@@ -40,26 +40,32 @@ public class decoder{
 		File decoded = new File("decoded.txt");
 		decoded.createNewFile();
 		BufferedWriter p = new BufferedWriter(new FileWriter(decoded));
-		byte temp0;
+		byte[] b = new byte[81920000];
 		String temp;
 		Node pointer = rootNode;
-		while (encoded2.available() > 0) {
-			temp0 = encoded2.readByte();
-			temp = byteToBit(temp0);
-			for (int i = 0; i < 8; i++) {
-				if (temp.charAt(i) == '0') {
-					pointer = pointer.leftChild;
-					if (pointer.value == 0) {
-						p.write(pointer.number + "");
-						p.newLine();
-						pointer = rootNode;
-					}
-				} else {
-					pointer = pointer.rightChild;
-					if (pointer.value == 0) {
-						p.write(pointer.number + "");
-						p.newLine();
-						pointer = rootNode;
+		int available;
+		while ((available = encoded2.available()) > 0) {
+			if (available < 81920000){
+				b = new byte[available];
+			}
+			encoded2.read(b);
+			for (byte temp0: b) {
+				temp = byteToBit(temp0);
+				for (int i = 0; i < 8; i++) {
+					if (temp.charAt(i) == '0') {
+						pointer = pointer.leftChild;
+						if (pointer.value == 0) {
+							p.write(pointer.number + "");
+							p.newLine();
+							pointer = rootNode;
+						}
+					} else {
+						pointer = pointer.rightChild;
+						if (pointer.value == 0) {
+							p.write(pointer.number + "");
+							p.newLine();
+							pointer = rootNode;
+						}
 					}
 				}
 			}
@@ -76,8 +82,12 @@ public class decoder{
     }  
 
 	public static void main(String[] args) throws Exception{
+		long start, end;
+		start = System.currentTimeMillis();
 		decoder d = new decoder();
 		d.buildTree(args[1]);
 		d.decodeData(args[0]);
+		end = System.currentTimeMillis();
+		System.out.println("Whole Time of Encoding is " + (end - start));
 	}
 }	

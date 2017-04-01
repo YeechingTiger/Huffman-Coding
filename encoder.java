@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 public class encoder {
 	public void encoder(String path) throws Exception{
-		int bufferSize = 4096;
+		int bufferSize = 8192000;
 		String str = null;
 		int readnum;
 		int i = 0;
@@ -55,7 +55,11 @@ public class encoder {
 	}
 
 	public static void main(String[] args) throws Exception{	
+		long start, end;
+		start = System.currentTimeMillis();
 		encoder encode1 = new encoder();
 		encode1.encoder(args[0]);
+		end = System.currentTimeMillis();
+		System.out.println("Whole Time of Encoding is " + (end - start));
 	}
 }
