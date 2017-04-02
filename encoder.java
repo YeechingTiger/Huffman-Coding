@@ -7,9 +7,10 @@ public class encoder {
 		int readnum;
 		int i = 0;
 		int k,  j, length;
-		String temp;
+		char[] temp = new char[8];
 		String[] table;
-		LinkedList<Character> buffer = new LinkedList<>();
+		//LinkedList<Character> buffer = new LinkedList<>();
+		Queue<Character> buffer = new LinkedList<>();
 		byte[] outBuffer = new byte[bufferSize];
 
 		//Read file form code table
@@ -32,13 +33,13 @@ public class encoder {
         	for (k = 0; k < length; k++) {
         		buffer.add(table[readnum].charAt(k));
         	}
-        	while (buffer.size() >= 8) {
-        		temp = "";
+        	while (buffer.size() >= 8) {	
         		for(k = 0; k < 8; k++) {
-        			temp += buffer.remove();
+        			temp[k] = buffer.remove();
         		}
-        		outBuffer[i] = Integer.valueOf(temp, 2).byteValue();
+        		outBuffer[i] = Integer.valueOf(String.valueOf(temp), 2).byteValue();
         		i++;
+        		
         		if (i == bufferSize) {
         			outputStream.write(outBuffer);
         			outBuffer = new byte[bufferSize];
