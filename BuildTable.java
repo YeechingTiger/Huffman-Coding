@@ -6,8 +6,8 @@ public class BuildTable {
 	String[] table = new String[1000000];
 	String[] string;
 	public void buildTable(String path) throws Exception {
-		readfile file = new readfile();
-        buildtree b = new buildtree();
+		ReadFile file = new ReadFile();
+        BuildTree b = new BuildTree();
 		ArrayList<Integer> freqtable = file.buildFreTable(path);
 		b.buildtreef(freqtable);
 		Node rootNode = b.fH.fourWayHeap[0];

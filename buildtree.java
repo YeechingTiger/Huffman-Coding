@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class buildtree {
+public class BuildTree {
 	
 	binaryHeap bH = new binaryHeap();
 	fourWayHeap fH = new fourWayHeap();
@@ -55,8 +55,8 @@ public class buildtree {
 	}
 
 	public static void main(String[] args) throws Exception{
-		readfile file = new readfile();
-        buildtree b = new buildtree();
+		ReadFile file = new ReadFile();
+        BuildTree b = new BuildTree();
 		ArrayList<Integer> freqtable = file.buildFreTable(args[0]);
 		b.buildtreep(freqtable);
 	}
