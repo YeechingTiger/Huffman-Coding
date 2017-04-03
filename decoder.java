@@ -1,5 +1,5 @@
-import java.util.*;
 import java.io.*;
+
 public class decoder{
 	public Node rootNode = new Node(-1, -1);
 	public void buildTree(String codeTable1) throws Exception{
@@ -82,12 +82,14 @@ public class decoder{
     }  
 
 	public static void main(String[] args) throws Exception{
+		System.out.println("Decoding......You should wait about 8s when using input_large.txt.");
 		long start, end;
 		start = System.currentTimeMillis();
 		decoder d = new decoder();
 		d.buildTree(args[1]);
 		d.decodeData(args[0]);
 		end = System.currentTimeMillis();
-		System.out.println("Whole Time of Encoding is " + (end - start));
+		System.out.println("Whole Time of Decoding is " + (end - start)+"ms");
+		System.out.println("Generated file could be found in source code folder");
 	}
 }	

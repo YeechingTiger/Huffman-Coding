@@ -1,13 +1,15 @@
+import java.io.File;
+import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.io.*;
+
 public class BuildTable {
-	File codeTable;
-	PrintWriter p;
-	String[] table = new String[1000000];
-	String[] string;
+	private File codeTable;
+	private PrintWriter p;
+	public String[] table = new String[1000000];
+	private String[] string;
 	public void buildTable(String path) throws Exception {
 		ReadFile file = new ReadFile();
-        BuildTree b = new BuildTree();
+		BuildTree b = new BuildTree();
 		ArrayList<Integer> freqtable = file.buildFreTable(path);
 		b.buildtreef(freqtable);
 		Node rootNode = b.fH.fourWayHeap[0];

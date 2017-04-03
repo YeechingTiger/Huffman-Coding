@@ -1,5 +1,10 @@
-import java.util.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class encoder {
 	public void encoder(String path) throws Exception{
 		int bufferSize = 8192000;
@@ -56,11 +61,13 @@ public class encoder {
 	}
 
 	public static void main(String[] args) throws Exception{	
+		System.out.println("Encoding...... You should wait about 12s when using input_large.txt.");
 		long start, end;
 		start = System.currentTimeMillis();
 		encoder encode1 = new encoder();
 		encode1.encoder(args[0]);
 		end = System.currentTimeMillis();
-		System.out.println("Whole Time of Encoding is " + (end - start));
+		System.out.println("Whole Time of Encoding is " + (end - start)+"ms");
+		System.out.println("Generated files could be found in source code folder");
 	}
 }
