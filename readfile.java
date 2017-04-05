@@ -1,3 +1,7 @@
+// @Author: Xing He  UFID: 5901-7218
+// Project for Advanced Data Structure Course in University of Florida
+//Final Version Date: April 4, 2017
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;

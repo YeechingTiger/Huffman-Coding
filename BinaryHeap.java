@@ -1,10 +1,12 @@
-public class binaryHeap
-//<Node extends Comparable<Node>> 
-{
+// @Author: Xing He  UFID: 5901-7218
+// Project for Advanced Data Structure Course in University of Florida
+//Final Version Date: April 4, 2017
+
+public class BinaryHeap {
 	public Node[] bHeap;
 	private int size = 0;
-
-	public binaryHeap() {
+	//Constructor
+	public BinaryHeap() {
 		bHeap = new Node[1000001];
 		bHeap[0] = null;
 	}
@@ -42,14 +44,12 @@ public class binaryHeap
 			if (!less(childrenMin, childrenMin + 1) && childrenMin < size) {
 				childrenMin++;
 			}
-
 			if (less(pointer, childrenMin)) {
 				break;
 			} else {
 				exchange(pointer, childrenMin);
 			}
 			pointer = childrenMin;
-
 		}
 	}
 

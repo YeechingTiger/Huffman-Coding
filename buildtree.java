@@ -1,17 +1,20 @@
+// @Author: Xing He  UFID: 5901-7218
+// Project for Advanced Data Structure Course in University of Florida
+//Final Version Date: April 4, 2017
+
 import java.util.ArrayList;
 
 public class BuildTree {
-	
-	binaryHeap bH = new binaryHeap();
-	fourWayHeap fH = new fourWayHeap();
-	pairingHeap pH = new pairingHeap();
+	BinaryHeap bH = new BinaryHeap();
+	FourWayHeap fH = new FourWayHeap();
+	PairingHeap pH = new PairingHeap();
+
 	public void buildtreeb(ArrayList<Integer> freqTable) {
 		for (int i = 0; i < 1000000; i++) {
 			if (freqTable.get(i) != 0) {
 				Node temp = new Node(i ,freqTable.get(i));
 				bH.insert(temp);
 			}
-		
 		}
 		while (bH.size() > 1) {
 			Node node1 = bH.deleteM();
@@ -27,7 +30,6 @@ public class BuildTree {
 				Node temp = new Node(i ,freqTable.get(i));
 				fH.insert(temp);
 			}
-		
 		}
 		while (fH.size() > 1) {
 			Node node1 = fH.deleteM();

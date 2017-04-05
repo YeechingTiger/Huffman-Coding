@@ -1,3 +1,7 @@
+// @Author: Xing He  UFID: 5901-7218
+// Project for Advanced Data Structure Course in University of Florida
+//Final Version Date: April 4, 2017
+
 import java.io.File;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -17,8 +21,6 @@ public class BuildTable {
 		codeTable = new File("code_table.txt");
 		codeTable.createNewFile();
 		p = new PrintWriter(codeTable);
-		//System.out.println(rootNode.value);
-		//System.out.println(rootNode.rightChild.value);
 		helper(rootNode, str, " ");
 		p.close();
 	}

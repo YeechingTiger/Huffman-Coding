@@ -1,3 +1,6 @@
+// @Author: Xing He  UFID: 5901-7218
+// Project for Advanced Data Structure Course in University of Florida
+//Final Version Date: April 4, 2017
 
 public class Node implements Comparable<Node>{
 	public Node leftChild;

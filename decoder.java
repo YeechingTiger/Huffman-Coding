@@ -1,3 +1,7 @@
+// @Author: Xing He  UFID: 5901-7218
+// Project for Advanced Data Structure Course in University of Florida
+//Final Version Date: April 4, 2017
+
 import java.io.*;
 
 public class decoder{
@@ -9,7 +13,8 @@ public class decoder{
 		char a;
 		String code;
 		BufferedReader codeTable2 = new BufferedReader(new FileReader(new File(codeTable1)));
-      	while((str = codeTable2.readLine()) != null) {
+
+		while((str = codeTable2.readLine()) != null) {
         	Node node = rootNode;
         	string = str.split(" ");
         	number = Integer.parseInt(string[0]);
@@ -40,17 +45,17 @@ public class decoder{
 		File decoded = new File("decoded.txt");
 		decoded.createNewFile();
 		BufferedWriter p = new BufferedWriter(new FileWriter(decoded));
-		byte[] b = new byte[81920000];
+		byte[] b = new byte[8*1024];
 		String temp;
 		Node pointer = rootNode;
 		int available;
 		while ((available = encoded2.available()) > 0) {
-			if (available < 81920000){
+			if (available < 8*1024){
 				b = new byte[available];
 			}
 			encoded2.read(b);
 			for (byte temp0: b) {
-				temp = byteToBit(temp0);
+				temp = byteToString(temp0);
 				for (int i = 0; i < 8; i++) {
 					if (temp.charAt(i) == '0') {
 						pointer = pointer.leftChild;
@@ -73,7 +78,7 @@ public class decoder{
 		p.close();
 	}
 	//Byte to String
-    public static String byteToBit(byte b) {  
+    public static String byteToString(byte b) {
         return ""  
                 + (byte) ((b >> 7) & 0x1) + (byte) ((b >> 6) & 0x1)  
                 + (byte) ((b >> 5) & 0x1) + (byte) ((b >> 4) & 0x1)  
@@ -81,8 +86,9 @@ public class decoder{
                 + (byte) ((b >> 1) & 0x1) + (byte) ((b >> 0) & 0x1);  
     }  
 
+    //Main method
 	public static void main(String[] args) throws Exception{
-		System.out.println("Decoding......You should wait about 8s when using input_large.txt.");
+		System.out.println("Decoding......You should wait about 8s when using input_large.txt");
 		long start, end;
 		start = System.currentTimeMillis();
 		decoder d = new decoder();

@@ -1,8 +1,12 @@
-public class fourWayHeap{
+// @Author: Xing He  UFID: 5901-7218
+// Project for Advanced Data Structure Course in University of Florida
+//Final Version Date: April 4, 2017
+
+public class FourWayHeap{
 	public Node[] fourWayHeap;
 	private int size = 0;
 
-	public fourWayHeap() {
+	public FourWayHeap() {
 		fourWayHeap = new Node[1000000];
 	}
 
@@ -45,7 +49,6 @@ public class fourWayHeap{
 			if (4 * pointer + 4 <= size - 1 && !notlarger(childrenMin, 4 * pointer + 4)) {
 				childrenMin = 4 * pointer + 4;
 			}
-	
 			if (notlarger(pointer, childrenMin)) {
 				break;
 			} else {
@@ -62,11 +65,11 @@ public class fourWayHeap{
 	private boolean less(int i, int j) {
 		return fourWayHeap[i].value < fourWayHeap[j].value;
 	}
+
 	private void exchange(int i, int j) {
 		Node temp = fourWayHeap[i];
 		fourWayHeap[i] = fourWayHeap[j];
 		fourWayHeap[j] = temp;
-		//System.out.println("test3");
 	}
 
 }

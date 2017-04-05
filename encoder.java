@@ -1,3 +1,7 @@
+// @Author: Xing He  UFID: 5901-7218
+// Project for Advanced Data Structure Course in University of Florida
+//Final Version Date: April 4, 2017
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -7,14 +11,14 @@ import java.util.Queue;
 
 public class encoder {
 	public void encoder(String path) throws Exception{
-		int bufferSize = 8192000;
+		//Declare variables
+		int bufferSize = 8192;
 		String str = null;
 		int readnum;
 		int i = 0;
 		int k,  j, length;
 		char[] temp = new char[8];
 		String[] table;
-		//LinkedList<Character> buffer = new LinkedList<>();
 		Queue<Character> buffer = new LinkedList<>();
 		byte[] outBuffer = new byte[bufferSize];
 
@@ -32,7 +36,7 @@ public class encoder {
 		table = buildTable.table;
 
 		//Read code table file and output bin file
-      	while((str = read.readLine()) != null){
+      	while ((str = read.readLine()) != null) {
         	readnum = Integer.parseInt(str);
         	length = table[readnum].length();
         	for (k = 0; k < length; k++) {
@@ -61,7 +65,7 @@ public class encoder {
 	}
 
 	public static void main(String[] args) throws Exception{	
-		System.out.println("Encoding...... You should wait about 12s when using input_large.txt.");
+		System.out.println("Encoding...... You should wait about 12s when using input_large.txt");
 		long start, end;
 		start = System.currentTimeMillis();
 		encoder encode1 = new encoder();

@@ -1,6 +1,8 @@
+// @Author: Xing He  UFID: 5901-7218
+// Project for Advanced Data Structure Course in University of Florida
+//Final Version Date: April 4, 2017
 
-
-public class pairingHeap {
+public class PairingHeap {
 	class PairNode {
 	Node element;
 	PairNode leftChild;
@@ -8,7 +10,7 @@ public class pairingHeap {
 	PairNode prev;
 
 	/* Constructor */
-		public PairNode(Node x) {
+	public PairNode(Node x) {
 			element = x;
 			leftChild = null;
 			nextSibling = null;
@@ -19,7 +21,7 @@ public class pairingHeap {
 	public PairNode root;
 	private PairNode[] treeArray = new PairNode[5];
 
-	public pairingHeap() {
+	public PairingHeap() {
 		root = null;
 	}
 
@@ -43,7 +45,6 @@ public class pairingHeap {
 	private PairNode compareAndLink(PairNode first, PairNode second) {
 		if (second == null)
 			return first;
-
 		if ((second.element).compareTo(first.element) < 0) {
 			second.prev = first.prev;
 			first.prev = second;
